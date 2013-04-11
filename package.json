@@ -1,0 +1,9 @@
+{
+  "name": "UnitsOfSound Activity Model Builder",
+  "main": "index.html",
+  "toolbar": false,
+  "width": 1000,
+  "height": 700,
+  "resizable": true,
+  "frame": true
+}
