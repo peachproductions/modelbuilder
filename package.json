@@ -1,9 +1,9 @@
 {
-    "name": "Units of Sound Activity Model Builder"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.8"
-    , "less": ">= 0.0.1"
+  "name": "Units of Sound Activity Model Builder",
+  "version": "0.0.2",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.8",
+    "less": ">= 0.0.1"
   }
 }
