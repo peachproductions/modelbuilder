@@ -8,38 +8,43 @@ var UOSModelBuilder = angular.module("UOSModelBuilder", [], function UOSModelBui
     
     //Encoded dropbox Key: nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==
     var baseDir = "/Units Of Sound/Development/Models/";
-    var client = new Dropbox.Client({
+    this.client = new Dropbox.Client({
         key: "nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==",
         sandbox: false
     });
     
-    client.authDriver(new Dropbox.Drivers.Redirect());
-    client.authenticate(function (error, client) {
+    this.client.authDriver(new Dropbox.Drivers.Redirect());
+    this.client.authenticate(function (error, client) {
         if (error) {
             alert("Dropbox connection did not work \n\n You need to connect dropbox to use this app.");
             return;
         }
-        
-    });
-    
-    client.mkdir(baseDir, function createDirIfNeeded(err, res) {
-        if (err) {
-            if (err.status === 403) {
-                //dont care about this err
-                return;
+        client.mkdir(baseDir, function createDirIfNeeded(err, res) {
+            if (err) {
+                if (err.status === 403) {
+                    //dont care about this err
+                    return;
+                }
+                alert("Problem with connecting to dropbox.");
             }
-            alert("Problem with connecting to dropbox.");
-        }
+        });
     });
     
-    UOSModelBuilder.saveModel =  function saveModelToDropbox(model) {
-        var fileName = "p" + model.page + "ReadinBlock.json";
-        client.writeFile(baseDir + fileName, JSON.stringify(model), function saveCallback(err, res) {
+    this.saveModel =  function saveModelToDropbox(model, cb) {
+        this.client.writeFile(baseDir + model.fileName, JSON.stringify(model), function saveCallback(err, res) {
             if (err) {
                 alert("Problem saving Model to dropbox");
             }
+            cb(err, res);
         });
     };
+    
+    this.loadModel = function loadModelFromDropbox(model){
+        this.client.readFile(baseDir + model.filename, function (err, data) {
+            if(err){ return; }
+            model = JSON.parse(data);
+        });
+    }
 });
 
 
@@ -79,11 +84,27 @@ function ReadingBlockSetController($scope) {
     $scope.setModel = {
         page: "",
         action: "",
+        filename: "",
         blocks: [new Block(), new Block()]
     };
     
+    $scope.$watch('setModel.page', function(newValue, oldValue) {
+       $scope.setModel.filename = "p" + newValue + "ReadingBlock.json" 
+    });
+    
+    $scope.$watch('setModel.page', function(newValue, oldValue) {
+        if(newValue != oldValue){
+            console.log('try and load existing model');
+            UOSModelBuilder.loadModel($scope.setModel);
+        }
+    });
+    
     $scope.saveModel = function () {
-        UOSModelBuilder.save($scope.setModel);
+        UOSModelBuilder.saveModel($scope.setModel, function (err) {
+            if(!err){
+                $scope.setModel.blocks = [new Block(), new Block()];
+            }
+        });
     };
 }
 

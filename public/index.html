@@ -10,7 +10,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.1/dropbox.min.js"></script>
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet/css" type="text/css" href="stylesheet/styles.css" />
+    <link href="stylesheets/styles.css" rel="stylesheet" type="text/css"/>
   </head>
     <body>
         <div class="container">
@@ -27,7 +27,7 @@
                 <!--==  PAGE HEADER  ==-->
                 <div class="row-fluid">
                     <div class="span12">
-                        <h2>ReadingBlock Set creator</h2><input ng-model="setModel.page" placeholder="Page#"><input ng-model="setModel.action" placeholder="Action#">
+                        <h2>ReadingBlock Set creator</h2><input type="text" ng-model="setModel.stage" placeholder="stage#"><input type="text" ng-model="setModel.page" placeholder="Page#">
                     </div>
                 </div>
                 <!--==  BODY ==-->
@@ -37,28 +37,31 @@
                         <!--==  BLOCK REPEATER STARTS  ==-->
                         <div class="block row-fluid" ng-repeat="block in setModel.blocks" ng-controller="BlockController">
                             <div class="row-fluid">
-                                Block Sound: <input class="span2" type="text" ng-model="block.uos"/>
-                                Block Clip: <input class="span2" type="text" ng-model="block.uosClip"/>
+                                UofS: <input class="span2" type="text" ng-model="block.uos" placeholder="-ing"/>
+                                UofS_Clip: <input class="span2" type="text" ng-model="block.uosClip" placeholder="-ing"/>
+                                <br/>
+                                Intro_Clip: <input class="span2" type="text" ng-model="block.inrtoClip" placholder="i1"/>
+                                Block_clip: <input class="span2" type="text" ng-model="block.blockClip" placeholder="B{{$index+1}}"/>
                             </div>
                             <div class="row-fluid">
                                 <div class="span8 word" ng-repeat="word in block.words">
                                     <div class="row-fluid">
                                         <input class="span6" type="text" placeholder="word {{$index + 1}}" ng-model="word.text"/>
-                                        <input class="span6" type="text" placeholder="sylable breakdown" ng-list="-" ng-model="word.sylabuls"/>
+                                        <input class="span6" type="text" placeholder="syllable breakdown" ng-list="-" ng-model="word.sylabuls"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row-fluid">
                                 <div class="btn-group">
                                     <button class="btn" ng-click="addWord()">Add Word</button>
-                                    <button class="btn" ng-click="removeWord()">Remove Word</button>
+                                    <button class="btn btn-warning" ng-click="removeWord()">Remove Word</button>
                                 </div>
                             </div>
                         </div>
                         <div class="row-fluid">
                             <div class="btn-group">
                                 <button class="btn" ng-click="addBlock()">Add Block</button>
-                                <button class="btn" ng-click="removeBlock()">Remove Block</button>
+                                <button class="btn btn-warning" ng-click="removeBlock()">Remove Block</button>
                             </div>
                         </div>
                     </div>
@@ -68,7 +71,9 @@
                 </div>
                 <!--==  BODY ==-->
                 <div class="row-fluid">
-                    <input class="btn" ng-click="saveModel()" value="SAVE">
+                    <br/>
+                    <br/>
+                    <input class="btn btn-primary" ng-click="saveModel()" ng-hide="UOSModelBuilder.client.isAuthenticated()" value="SAVE">
                 </div>
             </div>
             

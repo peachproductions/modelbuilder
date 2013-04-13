@@ -1,0 +1,5 @@
+.c9revisions/
+node_modules/
+public/stylesheets/*.css
+
+*.log
