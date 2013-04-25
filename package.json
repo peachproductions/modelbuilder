@@ -8,5 +8,10 @@
   },
   "devDependencies": {
     "jasmine-node": "~1.7.0"
-  }
+  },
+  "repository": { 
+    "type" : "git",
+    "url" : "https://peachproductions.unfuddle.com/git/peachproductions_modelbuilder/"
+  },
+  "private": true
 }
