@@ -27,9 +27,11 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+// app.engine('less', require("less").render);
+
 // Routes
 app.get('/', function (req, res) {
-    res.redirect('/index.html');
+    res.redirect('/Sentence.html');
 });
 
 app.listen(process.env.PORT);
