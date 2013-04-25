@@ -1,0 +1,71 @@
+<!doctype html>
+<html ng-app="UOSModelBuilder" lang="en" ng-controller="AppCtrl">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.9.1/dropbox.min.js"></script>
+        <script src="javascript/angular.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="javascript/underscore-min.js"></script>
+        <script src="javascript/main.js"></script>
+        <!-- Bootstrap -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="stylesheets/styles.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row-fluid">
+                <ul class="nav nav-pills">
+                    <li><a href="ReadingBlock.html">ReadingBlock</a></li>
+                    <li class="active"><a href="Sentence.html">Sentence</a></li>
+                    <li><a href="Paragraph.html">Paragraph</a></li>
+                    <li><a href="QuestionAnswer.html">Questions & Answers</a></li>
+                    <li><a href="CheckWord.html">Check Words</a></li>
+                    <li><a href="CheckSound.html">Check Sounds</a></li>
+                </ul>
+            </div>
+            
+            <div class="row-fliud" ng-controller="SentencePageController">
+                <!--==  PAGE HEADER  ==-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        <h2>Sentence Page Model creator</h2>
+                        <input type="text" ng-model="pageModel.stage" placeholder="stage#">
+                        <input type="text" ng-model="pageModel.page" placeholder="Page#">
+                        <input class="btn btn-primary span2" ng-click="loadModel()" value="LOAD" ng-show="true"/>
+                    </div>
+                </div>
+                <!--SENTENCE VIEW BODY-->
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="span7">
+                            <div class="row-fluid well" ng-repeat="sentence in pageModel.sentences">
+                                <div class="row-fluid span12">
+                                    <textarea class="span8" ng-model="sentence.text" placeholder="Sentence text goes here"></textarea>
+                                </div>
+                                <div class="row-fluid span12">
+                                    <input type="text" class="span2" placeholder="clip name" ng-model="sentence.clip">
+                                    <input type="text" class="span6" placeholder="Interogate Words (comma seperated)" ng-model="sentence.interogationWords">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span4 offset1">
+                            <pre>{{pageModel}}</pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                            <div class="btn-group">
+                                <button class="btn" ng-click="addSentence()">Add Sentence</button>
+                                <button class="btn btn-warning" ng-click="removeSentence()">Remove Sentence</button>
+                            </div>
+                        </div>
+                <!--==  PAGE FOOTER ==-->
+                <div class="row-fluid">
+                    <br/>
+                    <br/>
+                    <input class="btn btn-primary" ng-click="saveModel()" value="SAVE">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
