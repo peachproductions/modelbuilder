@@ -28,7 +28,7 @@
                 <!--==  PAGE HEADER  ==-->
                 <div class="row-fluid">
                     <div class="span12">
-                        <h2>Paragraph Page Model creator</h2>
+                        <h2>Questions&Answers Page Model creator</h2>
                         <input type="text" ng-model="pageModel.stage" placeholder="stage#">
                         <input type="text" ng-model="pageModel.page" placeholder="Page#">
                         <input class="btn btn-primary span2" ng-click="loadModel()" value="LOAD" ng-show="true"/>
@@ -39,13 +39,17 @@
                     <div class="span12">
                         <div class="span7">
                             <div class="row-fluid well" ng-repeat="QA in pageModel.questionAnswers">
-                                <div class="row-fluid span12">
-                                    <input type="text" class="span6" placeholder="Question" ng-model="QA.question.text"/>
-                                    <input type="text" class="span2" placeholder="Clip" ng-model="QA.question.clip"/>
+                                <div class="span6">
+                                    <div ng-repeat="question in QA.questions">
+                                        <input type="text" placeholder="Question Clip" ng-model="question.text"/>
+                                    </div>
+                                    <button class="btn" ng-click="QA.questions.push({text:''})">Add Question</button>
                                 </div>
-                                <div class="row-fluid span12" ng-repeat="answer in QA.answers">
-                                    <input type="text" class="span6" placeholder="Answer" ng-model="answer.text"/>
-                                    Correct Answer<input type="checkbox" ng-model="answer.correct"/>
+                                <div class="span6">
+                                    <div ng-repeat="answer in QA.answers">
+                                        <input type="text" placeholder="Posible Answer" ng-model="answer.text"/>    
+                                    </div>
+                                    <button class="btn" ng-click="QA.answers.push({text:''})">Add Answer</button>
                                 </div>
                             </div>
                         </div>

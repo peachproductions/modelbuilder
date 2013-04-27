@@ -224,20 +224,10 @@ UOSModelBuilder.controller('ParagraphPageController', function($scope, $route, $
 
 UOSModelBuilder.controller('QAPageController', function($scope) {
     
-    var Answer = function () {
-        return {
-            text: "",
-            correct: false
-        };
-    };
-    
     var QuestionAndAnswer = function () {
         return {
-            question: {
-                text: "",
-                clip: ""
-            },
-            answers:[new Answer(), new Answer(), new Answer()]
+            questions:[{text:""},{text:""}],
+            answers:[{text:""},{text:""}]
         }
     }
     
@@ -266,9 +256,69 @@ UOSModelBuilder.controller('QAPageController', function($scope) {
     $scope.removeQA = function () {
         $scope.pageModel.questionAnswers.pop();
     };
+    
+    $scope.saveModel = function () {
+        $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
+            if (err) {
+                alert("Problem saving Model to dropbox");
+            }
+        });
+    };
+    
+    $scope.loadModel = function loadModelFromDropbox(){
+        $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
+            if(err){ return; }
+            $scope.pageModel = JSON.parse(data);
+            $scope.$apply();
+        });
+    };
 });
 
+UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
+    
+    $scope.addBlock = function addBlockToModel() {
+        $scope.pageModel.blocks.push(new Block());
+    };
+  
+    $scope.removeBlock = function removeBlockFromModel() {
+        $scope.pageModel.blocks.pop();
+    };
 
+    $scope.pageModel = {
+        page: "",
+        stage: "",
+        filename: "",
+        blocks: [new Block(), new Block()]
+    };
+    
+    /**
+     * Not very DRY but will fix later
+     */
+    $scope.$watch('pageModel.stage', function(newValue, oldValue) {
+       $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "CheckSounds.json";
+    });
+    
+    $scope.$watch('pageModel.page', function(newValue, oldValue) {
+       $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "CheckSounds.json";
+    });  
+    
+    
+    $scope.saveModel = function saveModelToDropbox() {
+        $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
+            if (err) {
+                alert("Problem saving Model to dropbox");
+            }
+        });
+    };
+    
+    $scope.loadModel = function loadModelFromDropbox(){
+        $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
+            if(err){ return; }
+            $scope.pageModel = JSON.parse(data);
+            $scope.$apply();
+        });
+    };
+});
 
 
 
