@@ -320,7 +320,51 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
     };
 });
 
+UOSModelBuilder.controller('CheckWordPageController', function ($scope) {
+    
+    $scope.addBlock = function addBlockToModel() {
+        $scope.pageModel.blocks.push(new Block());
+    };
+  
+    $scope.removeBlock = function removeBlockFromModel() {
+        $scope.pageModel.blocks.pop();
+    };
 
+    $scope.pageModel = {
+        page: "",
+        stage: "",
+        filename: "",
+        blocks: [new Block(), new Block()]
+    };
+    
+    /**
+     * Not very DRY but will fix later
+     */
+    $scope.$watch('pageModel.stage', function(newValue, oldValue) {
+       $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "CheckWord.json";
+    });
+    
+    $scope.$watch('pageModel.page', function(newValue, oldValue) {
+       $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "CheckWord.json";
+    });  
+    
+    
+    $scope.saveModel = function saveModelToDropbox() {
+        $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
+            if (err) {
+                alert("Problem saving Model to dropbox");
+            }
+        });
+    };
+    
+    $scope.loadModel = function loadModelFromDropbox(){
+        $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
+            if(err){ return; }
+            $scope.pageModel = JSON.parse(data);
+            $scope.$apply();
+        });
+    };
+});
 
 
 
