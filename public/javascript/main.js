@@ -274,10 +274,27 @@ UOSModelBuilder.controller('QAPageController', function($scope) {
     };
 });
 
+
+function CheckSoundWord() {
+    return {
+            text: "",
+            clip: "",
+            clue: ""
+        };
+}
+
+
+
 UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
-    
+
+    function CheckSoundBlock() {
+        return {
+        words: [new CheckSoundWord(), new CheckSoundWord(), new CheckSoundWord(), new CheckSoundWord(), new CheckSoundWord(), new CheckSoundWord()]
+        };
+    }
+
     $scope.addBlock = function addBlockToModel() {
-        $scope.pageModel.blocks.push(new Block());
+        $scope.pageModel.blocks.push(new CheckSoundBlock());
     };
   
     $scope.removeBlock = function removeBlockFromModel() {
@@ -288,7 +305,7 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
         page: "",
         stage: "",
         filename: "",
-        blocks: [new Block(), new Block()]
+        blocks: [new CheckSoundBlock(), new CheckSoundBlock(), new CheckSoundBlock()]
     };
     
     /**
@@ -319,6 +336,17 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
         });
     };
 });
+
+UOSModelBuilder.controller('CheckSoundBlockController', function ($scope) {
+    $scope.addWord = function addWordToBlock() {
+        this.$parent.block.words.push(new CheckSoundWord());
+    };
+    
+    $scope.removeWord = function removeWordFromBlock() {
+        this.$parent.block.words.pop();
+    };
+});
+
 
 UOSModelBuilder.controller('CheckWordPageController', function ($scope) {
     
