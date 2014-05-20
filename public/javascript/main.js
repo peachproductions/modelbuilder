@@ -16,7 +16,7 @@ UOSModelBuilder.service('Dropbox', function () {
 
 UOSModelBuilder.controller('AppCtrl', function ($scope){
     //Encoded dropbox Key: nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==
-    $scope.baseDir = "/Units Of Sound/Development/Models/";
+    $scope.baseDir = "/Units Of Sound/Development/ModelsUS/";
     $scope.client = new Dropbox.Client({key: "il8usrqw2s5xuo1"});
 
 //    $scope.client.authDriver(new Dropbox.AuthDriver.Redirect({rememberUser: false}));
