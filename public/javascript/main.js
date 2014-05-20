@@ -17,12 +17,9 @@ UOSModelBuilder.service('Dropbox', function () {
 UOSModelBuilder.controller('AppCtrl', function ($scope){
     //Encoded dropbox Key: nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==
     $scope.baseDir = "/Units Of Sound/Development/Models/";
-    $scope.client = new Dropbox.Client({
-        key: "nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==",
-        sandbox: false
-    });
+    $scope.client = new Dropbox.Client({key: "il8usrqw2s5xuo1"});
 
-    $scope.client.authDriver(new Dropbox.Drivers.Redirect({rememberUser: true}));
+//    $scope.client.authDriver(new Dropbox.AuthDriver.Redirect({rememberUser: false}));
     $scope.client.authenticate(function (error, client) {
         if (error) {
             alert("Dropbox connection did not work \n\n You need to connect dropbox to use this app.");

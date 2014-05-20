@@ -25,5 +25,5 @@ app.get('/', function (req, res) {
     res.redirect('/Sentence.html');
 });
 
-app.listen(process.env.PORT);
+app.listen(5000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
