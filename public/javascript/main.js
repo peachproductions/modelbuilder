@@ -16,12 +16,12 @@ UOSModelBuilder.service('Dropbox', function () {
 
 UOSModelBuilder.controller('AppCtrl', function ($scope){
     //Encoded dropbox Key: nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==
-    $scope.baseDir = "/Units Of Sound/Development/Models/";
+    $scope.baseDir = "/Units Of Sound/Development/UKmodels/";
     $scope.client = new Dropbox.Client({
         key: "nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==",
         sandbox: false
     });
-    
+
     $scope.client.authDriver(new Dropbox.Drivers.Redirect({rememberUser: true}));
     $scope.client.authenticate(function (error, client) {
         if (error) {
@@ -38,7 +38,7 @@ UOSModelBuilder.controller('AppCtrl', function ($scope){
             }
         });
     });
-    
+
     $scope.pageModel = {};
 });
 
@@ -74,14 +74,14 @@ function Paragraph() {
         interogationWords: []
     }
 }
-    
+
 /* controller for the activity type ReadinBlock */
 UOSModelBuilder.controller('ReadingBlockSetController', function ($scope) {
-    
+
     $scope.addBlock = function addBlockToModel() {
         $scope.setModel.blocks.push(new Block());
     };
-  
+
     $scope.removeBlock = function removeBlockFromModel() {
         $scope.setModel.blocks.pop();
     };
@@ -92,19 +92,19 @@ UOSModelBuilder.controller('ReadingBlockSetController', function ($scope) {
         filename: "",
         blocks: [new Block(), new Block()]
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('setModel.stage', function(newValue, oldValue) {
        $scope.setModel.filename = "stage" + newValue + "page" + $scope.setModel.page + "ReadingBlock.json";
     });
-    
+
     $scope.$watch('setModel.page', function(newValue, oldValue) {
        $scope.setModel.filename = "stage" + $scope.setModel.stage + "page" + newValue + "ReadingBlock.json";
-    });  
-    
-    
+    });
+
+
     $scope.saveModel = function saveModelToDropbox() {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.setModel.filename, JSON.stringify($scope.setModel), function saveCallback(err, res) {
             if (err) {
@@ -112,7 +112,7 @@ UOSModelBuilder.controller('ReadingBlockSetController', function ($scope) {
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.setModel.filename, function (err, data) {
             if(err){ return; }
@@ -126,7 +126,7 @@ UOSModelBuilder.controller('BlockController', function ($scope) {
     $scope.addWord = function addWordToBlock() {
         this.$parent.block.words.push(new Word());
     };
-    
+
     $scope.removeWord = function removeWordFromBlock() {
         this.$parent.block.words.pop();
     };
@@ -140,26 +140,26 @@ UOSModelBuilder.controller('SentencePageController', function($scope, $route, $r
         filename: "",
         sentences: [new Sentence(), new Sentence(), new Sentence(), new Sentence()]
     };
-    
+
     $scope.addSentence = function () {
         $scope.pageModel.sentences.push(new Sentence());
     };
-  
+
     $scope.removeSentence = function () {
         $scope.pageModel.sentences.pop();
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('pageModel.stage', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "Sentence.json";
     });
-    
+
     $scope.$watch('pageModel.page', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "Sentence.json";
-    });  
-    
+    });
+
     $scope.saveModel = function () {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
             if (err) {
@@ -167,7 +167,7 @@ UOSModelBuilder.controller('SentencePageController', function($scope, $route, $r
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
             if(err){ return; }
@@ -185,26 +185,26 @@ UOSModelBuilder.controller('ParagraphPageController', function($scope, $route, $
         filename: "",
         paragraphs: [new Paragraph(), new Paragraph(), new Paragraph(), new Paragraph()]
     };
-    
+
     $scope.addParagraph = function () {
         $scope.pageModel.paragraphs.push(new Paragraph());
     };
-  
+
     $scope.removeParagraph = function () {
         $scope.pageModel.paragraphs.pop();
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('pageModel.stage', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "Paragraph.json";
     });
-    
+
     $scope.$watch('pageModel.page', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "Paragraph.json";
-    });  
-    
+    });
+
     $scope.saveModel = function () {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
             if (err) {
@@ -212,7 +212,7 @@ UOSModelBuilder.controller('ParagraphPageController', function($scope, $route, $
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
             if(err){ return; }
@@ -223,40 +223,40 @@ UOSModelBuilder.controller('ParagraphPageController', function($scope, $route, $
 });
 
 UOSModelBuilder.controller('QAPageController', function($scope) {
-    
+
     var QuestionAndAnswer = function () {
         return {
             questions:[{text:""},{text:""}],
             answers:[{text:""},{text:""}]
         }
     }
-    
+
     $scope.pageModel = {
         page: "",
         stage: "",
         filename: "",
         questionAnswers: [new QuestionAndAnswer(), new QuestionAndAnswer(), new QuestionAndAnswer()]
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('pageModel.stage', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "QuestionAnswer.json";
     });
-    
+
     $scope.$watch('pageModel.page', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "QuestionAnswer.json";
     });
-    
+
     $scope.addQA = function () {
         $scope.pageModel.questionAnswers.push(new QuestionAndAnswer());
     };
-    
+
     $scope.removeQA = function () {
         $scope.pageModel.questionAnswers.pop();
     };
-    
+
     $scope.saveModel = function () {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
             if (err) {
@@ -264,7 +264,7 @@ UOSModelBuilder.controller('QAPageController', function($scope) {
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
             if(err){ return; }
@@ -296,7 +296,7 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
     $scope.addBlock = function addBlockToModel() {
         $scope.pageModel.blocks.push(new CheckSoundBlock());
     };
-  
+
     $scope.removeBlock = function removeBlockFromModel() {
         $scope.pageModel.blocks.pop();
     };
@@ -307,19 +307,19 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
         filename: "",
         blocks: [new CheckSoundBlock(), new CheckSoundBlock(), new CheckSoundBlock()]
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('pageModel.stage', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "CheckSounds.json";
     });
-    
+
     $scope.$watch('pageModel.page', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "CheckSounds.json";
-    });  
-    
-    
+    });
+
+
     $scope.saveModel = function saveModelToDropbox() {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
             if (err) {
@@ -327,7 +327,7 @@ UOSModelBuilder.controller('CheckSoundPageController', function ($scope) {
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
             if(err){ return; }
@@ -341,7 +341,7 @@ UOSModelBuilder.controller('CheckSoundBlockController', function ($scope) {
     $scope.addWord = function addWordToBlock() {
         this.$parent.block.words.push(new CheckSoundWord());
     };
-    
+
     $scope.removeWord = function removeWordFromBlock() {
         this.$parent.block.words.pop();
     };
@@ -349,11 +349,11 @@ UOSModelBuilder.controller('CheckSoundBlockController', function ($scope) {
 
 
 UOSModelBuilder.controller('CheckWordPageController', function ($scope) {
-    
+
     $scope.addBlock = function addBlockToModel() {
         $scope.pageModel.blocks.push(new Block());
     };
-  
+
     $scope.removeBlock = function removeBlockFromModel() {
         $scope.pageModel.blocks.pop();
     };
@@ -364,19 +364,19 @@ UOSModelBuilder.controller('CheckWordPageController', function ($scope) {
         filename: "",
         blocks: [new Block(), new Block()]
     };
-    
+
     /**
      * Not very DRY but will fix later
      */
     $scope.$watch('pageModel.stage', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + newValue + "page" + $scope.pageModel.page + "CheckWord.json";
     });
-    
+
     $scope.$watch('pageModel.page', function(newValue, oldValue) {
        $scope.pageModel.filename = "stage" + $scope.pageModel.stage + "page" + newValue + "CheckWord.json";
-    });  
-    
-    
+    });
+
+
     $scope.saveModel = function saveModelToDropbox() {
         $scope.$parent.client.writeFile($scope.baseDir + $scope.pageModel.filename, JSON.stringify($scope.pageModel), function saveCallback(err, res) {
             if (err) {
@@ -384,7 +384,7 @@ UOSModelBuilder.controller('CheckWordPageController', function ($scope) {
             }
         });
     };
-    
+
     $scope.loadModel = function loadModelFromDropbox(){
         $scope.$parent.client.readFile($scope.baseDir + $scope.pageModel.filename, function (err, data) {
             if(err){ return; }
