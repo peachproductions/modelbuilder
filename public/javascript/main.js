@@ -16,7 +16,7 @@ UOSModelBuilder.service('Dropbox', function () {
 
 UOSModelBuilder.controller('AppCtrl', function ($scope){
     //Encoded dropbox Key: nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==
-    $scope.baseDir = "/Units Of Sound/Development/UKmodels/";
+    $scope.baseDir = "/Units Of Sound/Development/Models/";
     $scope.client = new Dropbox.Client({
         key: "nIUyFyNYXxA=|qdbN1ZZ5vovxz7pNkooONZNrcIDqNTL4zpwny2KAVg==",
         sandbox: false
