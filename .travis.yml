@@ -7,6 +7,8 @@ deploy:
     secure: hTzK984J808C0Hz29HrQTGuykFDBeAscqvYo+HI+yO6v7AiMK9l8iBdHHgK2Oz19ZX5py/fd2+BYBUTQ4zLTl+S2w3S6L+588ABDKyhf9J3n1yYOKb1eog5JsIorbusxG9B+f2xWPnyj23wdXVKEN+KFt2tEMu2UU1KCata1LDM=
   on:
     repo: peachproductions/modelbuilder
-    branch: uk
+    branch:
+      - uk
+      - us
 notifications:
   email: false
