@@ -1,4 +1,4 @@
-
+/*jslint node:true*/
 /**
  * Module dependencies.
  */
@@ -17,17 +17,8 @@ app.configure(function(){
   app.use(express.session({ secret: 'peachproductions' }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
-
-app.configure('production', function(){
-  app.use(express.errorHandler());
-});
-
-// app.engine('less', require("less").render);
 
 // Routes
 app.get('/', function (req, res) {

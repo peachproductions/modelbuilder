@@ -3,6 +3,9 @@
   "subdomain": "modeulbuilder-uk",
   "version": "0.0.2",
   "private": true,
+  "engines": {
+    "node": "v0.10.x"
+  },
   "dependencies": {
     "express": "2.5.8",
     "less": ">= 1.0.x"
@@ -10,6 +13,9 @@
   "devDependencies": {
     "jasmine-node": "~1.7.0"
   },
+  "scripts": {
+    "start": "node server.js"
+  }
   "repository": {
     "type" : "git",
     "url" : "https://peachproductions.unfuddle.com/git/peachproductions_modelbuilder/"
