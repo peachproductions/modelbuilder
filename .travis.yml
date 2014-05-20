@@ -3,7 +3,11 @@ deploy:
   email: chris@matheson.it
   password:
     secure: OcLAdasBUPjPow1PcxJRw0YPzoszMLqzIp1Txvx5hm5Ycj6WPZokwTRoFetXUSq6DdaGGWzuf1Ewx0cgsrZIvEnB0eqQH5K5Hl+QFNzd9oBhPSn0jxa2ko3K6h3DfrHh1iHb6gV3OAI+1Za7fuQ4W8ODNHkDm6yy3q8A/r8fM8U=
-  app: modelbuilder-uk
+  app: 
+    uk: modelbuilder-uk
+    us: modelbuilder-us
   on:
     repo: peachproductions/modelbuilder
-    branch: uk
+    branch: 
+      - uk
+      - us
