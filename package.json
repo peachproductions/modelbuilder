@@ -1,5 +1,6 @@
 {
   "name": "modeulbuilder-uk",
+  "subdomain": "modeulbuilder-uk",
   "version": "0.0.2",
   "private": true,
   "dependencies": {

@@ -1,15 +1,14 @@
 language: node_js
 node_js: "0.10"
 deploy:
-  provider: appfog
-  email: chris@matheson.it
-  password:
-    secure: OcLAdasBUPjPow1PcxJRw0YPzoszMLqzIp1Txvx5hm5Ycj6WPZokwTRoFetXUSq6DdaGGWzuf1Ewx0cgsrZIvEnB0eqQH5K5Hl+QFNzd9oBhPSn0jxa2ko3K6h3DfrHh1iHb6gV3OAI+1Za7fuQ4W8ODNHkDm6yy3q8A/r8fM8U=
-  app: 
-    uk: modelbuilder-uk
-    us: modelbuilder-us
+  provider: nodejitsu
+  user: chrismatheson
+  api_key:
+    secure: XodhHlQsJLYJihuoFKJ3cW+g2Cy7uWxG9B6lsmFPpII99XB1gtb++DKF3ZJQj/4PHFikdOr6l6A2RUuef6ssrVCX37lLGROql/D+XP/XYUhjzL5a0eMBmwN2m875Y7q07VFBeUfhrY92NDn3xkLK06lLmNIUI4WerD757M0yHtE=
+  skip_cleanup: true
   on:
-    repo: peachproductions/modelbuilder
-    branch: 
-      - uk
-      - us
+    branch:
+        - us
+        - uk
+notifications:
+  email: false
