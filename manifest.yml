@@ -9,6 +9,6 @@ applications:
         description: Node.js Application
         exec: 
     infra: eu-aws
-    url: http://modelbuilder.unitsofsound.net
+    url: http://modelbuilder-us.unitsofsound.net
     mem: 64M
     instances: 1
