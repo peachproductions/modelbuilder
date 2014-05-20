@@ -1,5 +1,5 @@
 {
-  "name": "Units of Sound Activity Model Builder",
+  "name": "modeulbuilder-us",
   "version": "0.0.2",
   "private": true,
   "dependencies": {
@@ -9,7 +9,7 @@
   "devDependencies": {
     "jasmine-node": "~1.7.0"
   },
-  "repository": { 
+  "repository": {
     "type" : "git",
     "url" : "https://peachproductions.unfuddle.com/git/peachproductions_modelbuilder/"
   },
