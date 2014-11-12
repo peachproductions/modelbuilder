@@ -1,0 +1,21 @@
+.block {
+    margin-bottom: 50px;
+    margin-left: 20px;
+    border: solid #a2a2a2 1px;
+    padding-top: 10px;
+
+}
+
+.addremove {
+    position: relative;
+    top: -20px;
+    left: 20px;
+}
+
+.page {
+    margin-bottom: 200px;
+}
+
+.uk {
+    background-color: #ebebeb;
+}
