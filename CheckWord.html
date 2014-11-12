@@ -5,60 +5,68 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
         <script src="javascript/angular.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="javascript/underscore-min.js"></script>
         <script src="javascript/main.js"></script>
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="stylesheets/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body class="uk">
         <div class="container">
             <div class="row-fluid">
                 <ul class="nav nav-pills">
                     <li><a href="ReadingBlock.html">ReadingBlock</a></li>
-                    <li class="active"><a href="Sentence.html">Sentence</a></li>
+                    <li><a href="Sentence.html">Sentence</a></li>
                     <li><a href="Paragraph.html">Paragraph</a></li>
                     <li><a href="QuestionAnswer.html">Questions & Answers</a></li>
-                    <li><a href="CheckWord.html">Check Words</a></li>
+                    <li class="active"><a href="CheckWord.html">Check Words</a></li>
                     <li><a href="CheckSound.html">Check Sounds</a></li>
                 </ul>
             </div>
-
-            <div class="row-fliud" ng-controller="SentencePageController">
+            <div class="row-fluid" ng-controller="CheckWordPageController">
                 <!--==  PAGE HEADER  ==-->
                 <div class="row-fluid">
                     <div class="span12">
-                        <h2>Sentence Page Model creator</h2>
+                        <h2>Check Word Page Model creator</h2>
                         <input type="text" ng-model="pageModel.stage" placeholder="stage#">
                         <input type="text" ng-model="pageModel.page" placeholder="Page#">
                         <input class="btn btn-primary span2" ng-click="loadModel()" value="LOAD" ng-show="true"/>
                     </div>
                 </div>
-                <!--SENTENCE VIEW BODY-->
+                <!--==  BODY ==-->
                 <div class="row-fluid">
-                    <div class="span12">
-                        <div class="span7">
-                            <div class="row-fluid well" ng-repeat="sentence in pageModel.sentences">
-                                <div class="row-fluid span12">
-                                    <textarea class="span8" ng-model="sentence.text" placeholder="Sentence text goes here"></textarea>
+                    <!--==  Keep Word block on left  ==-->
+                    <div class="span7">
+                        <!--==  BLOCK REPEATER STARTS  ==-->
+                        <div class="well row-fluid" ng-repeat="block in pageModel.blocks" ng-controller="BlockController">
+                            <div class="row-fluid">
+                                <!--==  WORD REPEATER STARTS  ==-->
+                                <div class="span8 word" ng-repeat="word in block.words">
+                                    <div class="row-fluid">
+                                        <input class="span6" type="text" placeholder="word {{$index + 1}}" ng-model="word.text"/>
+                                        <input class="span6" type="text" placeholder="syllable breakdown" ng-model="word.sylabuls"/>
+                                    </div>
                                 </div>
-                                <div class="row-fluid span12">
-                                    <input type="text" class="span2" placeholder="clip name" ng-model="sentence.clip">
-                                    <input type="text" class="span6" placeholder="Interogate Words (comma seperated)" ng-model="sentence.interogationWords">
+                                <!--==  WORD REPEATER ENDS  ==-->
+                            </div>
+                            <div class="row-fluid">
+                                <div class="btn-group">
+                                    <button class="btn" ng-click="addWord()">Add Word</button>
+                                    <button class="btn btn-warning" ng-click="removeWord()">Remove Word</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="span4 offset1">
-                            <pre>{{pageModel}}</pre>
+                        <div class="row-fluid">
+                            <div class="btn-group">
+                                <button class="btn" ng-click="addBlock()">Add Block</button>
+                                <button class="btn btn-warning" ng-click="removeBlock()">Remove Block</button>
+                            </div>
                         </div>
                     </div>
+                    <!--==  BLOCK REPEATER ENDS  ==-->
+                    <div class="span4 offset1">
+                        <p class="well">{{pageModel}}</p>
+                    </div>
                 </div>
-                <div class="row-fluid">
-                            <div class="btn-group">
-                                <button class="btn" ng-click="addSentence()">Add Sentence</button>
-                                <button class="btn btn-warning" ng-click="removeSentence()">Remove Sentence</button>
-                            </div>
-                        </div>
                 <!--==  PAGE FOOTER ==-->
                 <div class="row-fluid">
                     <br/>
@@ -69,3 +77,6 @@
         </div>
     </body>
 </html>
+
+
+

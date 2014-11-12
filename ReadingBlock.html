@@ -5,39 +5,47 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/0.10.2/dropbox.min.js"></script>
         <script src="javascript/angular.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="javascript/underscore-min.js"></script>
         <script src="javascript/main.js"></script>
         <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="stylesheets/styles.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body class="uk">
         <div class="container">
             <div class="row-fluid">
                 <ul class="nav nav-pills">
-                    <li><a href="ReadingBlock.html">ReadingBlock</a></li>
+                    <li class="active"><a href="ReadingBlock.html">ReadingBlock</a></li>
                     <li><a href="Sentence.html">Sentence</a></li>
                     <li><a href="Paragraph.html">Paragraph</a></li>
                     <li><a href="QuestionAnswer.html">Questions & Answers</a></li>
-                    <li class="active"><a href="CheckWord.html">Check Words</a></li>
+                    <li><a href="CheckWord.html">Check Words</a></li>
                     <li><a href="CheckSound.html">Check Sounds</a></li>
                 </ul>
             </div>
-            <div class="row-fluid" ng-controller="CheckWordPageController">
+            <div class="row-fluid" ng-controller="ReadingBlockSetController">
                 <!--==  PAGE HEADER  ==-->
                 <div class="row-fluid">
                     <div class="span12">
-                        <h2>Check Word Page Model creator</h2>
-                        <input type="text" ng-model="pageModel.stage" placeholder="stage#">
-                        <input type="text" ng-model="pageModel.page" placeholder="Page#">
+                        <h2>ReadingBlock Page Model creator</h2>
+                        <input type="text" ng-model="setModel.stage" placeholder="stage#">
+                        <input type="text" ng-model="setModel.page" placeholder="Page#">
                         <input class="btn btn-primary span2" ng-click="loadModel()" value="LOAD" ng-show="true"/>
                     </div>
                 </div>
                 <!--==  BODY ==-->
                 <div class="row-fluid">
                     <!--==  Keep Word block on left  ==-->
-                    <div class="span7">
+                    <div class="span8">
                         <!--==  BLOCK REPEATER STARTS  ==-->
-                        <div class="well row-fluid" ng-repeat="block in pageModel.blocks" ng-controller="BlockController">
+                        <div class="block row-fluid" ng-repeat="block in setModel.blocks" ng-controller="BlockController">
+                            <div class="row-fluid">
+                                UofS: <input class="span2" type="text" ng-model="block.uos" placeholder="-ing"/>
+                                UofS_Clip: <input class="span2" type="text" ng-model="block.uosClip" placeholder="-ing"/>
+                                <br/>
+                                Intro_Clip: <input class="span2" type="text" ng-model="block.inrtoClip" placholder="i1"/>
+                                Block_clip: <input class="span2" type="text" ng-model="block.blockClip" placeholder="B{{$index+1}}"/>
+                            </div>
                             <div class="row-fluid">
                                 <!--==  WORD REPEATER STARTS  ==-->
                                 <div class="span8 word" ng-repeat="word in block.words">
@@ -63,8 +71,8 @@
                         </div>
                     </div>
                     <!--==  BLOCK REPEATER ENDS  ==-->
-                    <div class="span4 offset1">
-                        <p class="well">{{pageModel}}</p>
+                    <div class="span4">
+                        <p style="min-height: 400;">{{setModel}}</p>
                     </div>
                 </div>
                 <!--==  PAGE FOOTER ==-->

@@ -1,14 +1,28 @@
 language: node_js
-node_js: '0.10'
+node_js:
+- '0.11'
 deploy:
-  provider: nodejitsu
-  user: chrismatheson
-  api_key:
-    secure: hTzK984J808C0Hz29HrQTGuykFDBeAscqvYo+HI+yO6v7AiMK9l8iBdHHgK2Oz19ZX5py/fd2+BYBUTQ4zLTl+S2w3S6L+588ABDKyhf9J3n1yYOKb1eog5JsIorbusxG9B+f2xWPnyj23wdXVKEN+KFt2tEMu2UU1KCata1LDM=
-  on:
-    repo: peachproductions/modelbuilder
-    branch:
-      - uk
-      - us
+  - provider: s3
+    endpoint: static.unitsofsound.com.s3-website-eu-west-1.amazonaws.com
+    region: eu-west-1
+    access_key_id: AKIAJOK42BNIW3ABVB3A
+    secret_access_key:
+      secure: "i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc="
+    bucket: "static.unitsofsound.com"
+    skip_cleanup: true
+    upload-dir: modelbuilder-uk
+    on:
+      branch: uk
+  - provider: s3
+    endpoint: static.unitsofsound.com.s3-website-eu-west-1.amazonaws.com
+    region: eu-west-1
+    access_key_id: AKIAJOK42BNIW3ABVB3A
+    secret_access_key:
+      secure: "i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc="
+    bucket: "static.unitsofsound.com"
+    skip_cleanup: true
+    upload-dir: modelbuilder-us
+    on:
+      branch: us
 notifications:
   email: false
