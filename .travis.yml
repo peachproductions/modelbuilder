@@ -8,7 +8,7 @@ deploy:
     region: eu-west-1
     access_key_id: AKIAJOK42BNIW3ABVB3A
     secret_access_key:
-      secure: i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc=
+      secure: JyHBwZn4Alk5JkKrQ82tJDV6LoRhX7WUOz5Gy9XtAfcggnQ6WEn6jiZMfb3F3PEDk+TKdjb16/4xiMZqUACN2zr+peX00BnCAprfS1z4TG6AyT2JuynTuwEl1WcRS9xQYiP0ONdq0MkLZFIrU3d0TUR754Nj/N0gvgDOH6eM7uA=
     bucket: static.unitsofsound.com
     skip_cleanup: true
     upload-dir: modelbuilder-uk
@@ -19,7 +19,7 @@ deploy:
     region: eu-west-1
     access_key_id: AKIAJOK42BNIW3ABVB3A
     secret_access_key:
-      secure: i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc=
+      secure: JyHBwZn4Alk5JkKrQ82tJDV6LoRhX7WUOz5Gy9XtAfcggnQ6WEn6jiZMfb3F3PEDk+TKdjb16/4xiMZqUACN2zr+peX00BnCAprfS1z4TG6AyT2JuynTuwEl1WcRS9xQYiP0ONdq0MkLZFIrU3d0TUR754Nj/N0gvgDOH6eM7uA=
     bucket: static.unitsofsound.com
     skip_cleanup: true
     upload-dir: modelbuilder-us
