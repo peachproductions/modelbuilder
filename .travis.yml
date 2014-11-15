@@ -3,13 +3,14 @@ node_js:
 - '0.11'
 script: echo do tests
 deploy:
+  matrix:
   - provider: s3
     endpoint: static.unitsofsound.com.s3-website-eu-west-1.amazonaws.com
     region: eu-west-1
     access_key_id: AKIAJOK42BNIW3ABVB3A
     secret_access_key:
-      secure: "i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc="
-    bucket: "static.unitsofsound.com"
+      secure: i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc=
+    bucket: static.unitsofsound.com
     skip_cleanup: true
     upload-dir: modelbuilder-uk
     on:
@@ -19,11 +20,13 @@ deploy:
     region: eu-west-1
     access_key_id: AKIAJOK42BNIW3ABVB3A
     secret_access_key:
-      secure: "i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc="
-    bucket: "static.unitsofsound.com"
+      secure: i5y1t1MkCarVc594UX5e8AshdqKVWOyADfLI6X/p9cNlS4i5URCwVF0tHQKvVKyJ1fYiwyuN/Smv9nFowwbJOwJevgW7WJp3j5wsLGsLeqzhYBCforIlcdTYZrU8mvocStxi/czIYFR/N/TprG3hcQqbKbX7w2L/83POj7nOsEc=
+    bucket: static.unitsofsound.com
     skip_cleanup: true
     upload-dir: modelbuilder-us
     on:
       branch: us
+  secret_access_key:
+    secure: U5MkpWPKD02Yrci7SXe8g0cnLI8hoPz4VhaXp8119OgO/RkVVt9Mr2YSP2L4qHmc/CR76ehJqkEhWG+Qj+1fL2XAcc6XDcMI2m+EnHAznKheijeVupjT8PFI3+6UNvKulZVdtRirPXFe5Duclkqlz7qFrpePP66DorgDibaiqEM=
 notifications:
   email: false
